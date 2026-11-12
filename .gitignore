@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs/Task1.slnx
+
+# Build output and per-user Visual Studio files
+bin/
+obj/
+.vs/
+*.user
+*.suo
