@@ -1,59 +1,61 @@
-﻿using System.ComponentModel;
-
-public abstract class Part
+using System.ComponentModel;
+namespace BFM2Task1
 {
-    public int PartID { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-    public int InStock { get; set; }
-    public int Min { get; set; }
-    public int Max { get; set; }
-}
-
-public class Inhouse : Part
-{
-    public int MachineID { get; set; }
-}
-
-public class Outsourced : Part
-{
-    public string CompanyName { get; set; }
-}
-
-public class Product
-{
-    public BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
-    public int ProductID { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-    public int InStock { get; set; }
-    public int Min { get; set; }
-    public int Max { get; set; }
-
-    public void addAssociatedPart(Part part)
+    public abstract class Part
     {
-        AssociatedParts.Add(part);
+        public int PartID { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public int InStock { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
     }
 
-    public bool removeAssociatedPart(int partID)
+    public class Inhouse : Part
     {
-        Part partToRemove = lookupAssociatedPart(partID);
-        if (partToRemove != null)
+        public int MachineID { get; set; }
+    }
+
+    public class Outsourced : Part
+    {
+        public string CompanyName { get; set; } = string.Empty;
+    }
+
+    public class Product
+    {
+        public BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
+        public int ProductID { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public int InStock { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
+
+        public void addAssociatedPart(Part part)
         {
-            return AssociatedParts.Remove(partToRemove);
+            AssociatedParts.Add(part);
         }
-        return false;
-    }
 
-    public Part lookupAssociatedPart(int partID)
-    {
-        foreach (Part part in AssociatedParts)
+        public bool removeAssociatedPart(int partID)
         {
-            if (part.PartID == partID)
+            Part? partToRemove = lookupAssociatedPart(partID);
+            if (partToRemove != null)
             {
-                return part;
+                return AssociatedParts.Remove(partToRemove);
             }
+            return false;
         }
-        return null;
+
+        public Part? lookupAssociatedPart(int partID)
+        {
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartID == partID)
+                {
+                    return part;
+                }
+            }
+            return null;
+        }
     }
 }
