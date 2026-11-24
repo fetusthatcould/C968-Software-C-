@@ -135,24 +135,23 @@ namespace BFM2Task1
             SearchProductsButton.Text = "Search";
             SearchProductsButton.UseVisualStyleBackColor = true;
             SearchProductsButton.Click += SearchProductsButton_Click;
-            // 
             // AddPartButton
-            // 
             AddPartButton.Location = new Point(460, 352);
             AddPartButton.Name = "AddPartButton";
             AddPartButton.Size = new Size(60, 30);
             AddPartButton.TabIndex = 10;
             AddPartButton.Text = "Add";
             AddPartButton.UseVisualStyleBackColor = true;
-            // 
+            AddPartButton.Click += AddPartButton_Click;
+
             // ModifyPartButton
-            // 
             ModifyPartButton.Location = new Point(530, 352);
             ModifyPartButton.Name = "ModifyPartButton";
             ModifyPartButton.Size = new Size(60, 30);
             ModifyPartButton.TabIndex = 9;
             ModifyPartButton.Text = "Modify";
             ModifyPartButton.UseVisualStyleBackColor = true;
+            ModifyPartButton.Click += ModifyPartButton_Click;
             // 
             // DeletePartButton
             // 
@@ -163,24 +162,23 @@ namespace BFM2Task1
             DeletePartButton.Text = "Delete";
             DeletePartButton.UseVisualStyleBackColor = true;
             DeletePartButton.Click += this.DeletePartButton_Click;
-            // 
             // AddProductButton
-            // 
             AddProductButton.Location = new Point(1130, 352);
             AddProductButton.Name = "AddProductButton";
             AddProductButton.Size = new Size(60, 30);
             AddProductButton.TabIndex = 3;
             AddProductButton.Text = "Add";
             AddProductButton.UseVisualStyleBackColor = true;
-            // 
+            AddProductButton.Click += AddProductButton_Click;
+
             // ModifyProductButton
-            // 
             ModifyProductButton.Location = new Point(1200, 352);
             ModifyProductButton.Name = "ModifyProductButton";
             ModifyProductButton.Size = new Size(60, 30);
             ModifyProductButton.TabIndex = 2;
             ModifyProductButton.Text = "Modify";
             ModifyProductButton.UseVisualStyleBackColor = true;
+            ModifyProductButton.Click += ModifyProductButton_Click;
             // 
             // DeleteProductButton
             // 

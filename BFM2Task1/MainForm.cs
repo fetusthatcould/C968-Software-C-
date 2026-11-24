@@ -70,6 +70,29 @@ namespace BFM2Task1
                 }
             }
         }
+        private void AddPartButton_Click(object sender, EventArgs e)
+        {
+            using (AddPartForm addPartForm = new AddPartForm())
+            {
+                addPartForm.ShowDialog();
+            }
+        }
+
+        private void ModifyPartButton_Click(object sender, EventArgs e)
+        {
+            if (partsDataGridView.CurrentRow == null || !partsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Please select a part to modify.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Part selectedPart = (Part)partsDataGridView.CurrentRow.DataBoundItem;
+
+            using (ModifyPartForm modifyPartForm = new ModifyPartForm(selectedPart))
+            {
+                modifyPartForm.ShowDialog();
+            }
+        }
 
         private void AddProductButton_Click(object sender, EventArgs e)
         {
@@ -157,13 +180,6 @@ namespace BFM2Task1
         {
 
         }
-        private void AddPartButton_Click(object sender, EventArgs e)
-        {
-            using (AddPartForm addPartForm = new AddPartForm())
-            {
-                addPartForm.ShowDialog();
-            }
-        }
 
         private void DeletePartButton_Click(object sender, EventArgs e)
         {
@@ -191,11 +207,6 @@ namespace BFM2Task1
             {
                 Inventory.deletePart(selectedPart);
             }
-        }
-
-        private void DeleteProductButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
