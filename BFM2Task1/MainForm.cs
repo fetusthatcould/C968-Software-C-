@@ -71,6 +71,51 @@ namespace BFM2Task1
             }
         }
 
+        private void AddProductButton_Click(object sender, EventArgs e)
+        {
+            using (AddProductForm addProductForm = new AddProductForm())
+            {
+                addProductForm.ShowDialog();
+            }
+        }
+
+        private void ModifyProductButton_Click(object sender, EventArgs e)
+        {
+            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Please select a product to modify.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Product selectedProduct = (Product)productsDataGridView.CurrentRow.DataBoundItem;
+
+            using (ModifyProductForm modifyProductForm = new ModifyProductForm(selectedProduct))
+            {
+                modifyProductForm.ShowDialog();
+            }
+        }
+
+        private void DeleteProductButton_Click(object sender, EventArgs e)
+        {
+            if (productsDataGridView.CurrentRow == null || !productsDataGridView.CurrentRow.Selected)
+            {
+                MessageBox.Show("Please select a product to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Product selectedProduct = (Product)productsDataGridView.CurrentRow.DataBoundItem;
+
+            DialogResult confirm = MessageBox.Show(
+                $"Are you sure you want to delete {selectedProduct.Name}?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                Inventory.removeProduct(selectedProduct.ProductID);
+            }
+        }
         private void SearchProductsButton_Click(object sender, EventArgs e)
         {
             string searchValue = SearchProductsTextBox.Text.Trim().ToLower();
